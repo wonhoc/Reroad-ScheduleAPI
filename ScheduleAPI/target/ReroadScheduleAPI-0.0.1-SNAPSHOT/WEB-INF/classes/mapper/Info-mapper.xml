@@ -64,6 +64,7 @@
 		
 		SELECT cityCode, cityName
 		FROM CityInfo
+		WHERE LENGTH(cityCode) = 2
 		ORDER BY cityCode ASC
 	
 	</select>

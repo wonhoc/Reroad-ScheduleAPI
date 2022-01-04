@@ -4,10 +4,15 @@
       "name": "spring.datasource.hikari",
       "type": "com.zaxxer.hikari.HikariConfig",
       "sourceType": "com.example.config.DatabaseConfiguration",
-      "sourceMethod": "public com.zaxxer.hikari.HikariConfig hikariConfig() "
+      "sourceMethod": "hikariConfig()"
     }
   ],
   "properties": [
+    {
+      "name": "serviceKey.train",
+      "type": "java.lang.String",
+      "description": "A description for 'serviceKey.train'"
+    },
     {
       "name": "spring.datasource.hikari.allow-pool-suspension",
       "type": "java.lang.Boolean",
