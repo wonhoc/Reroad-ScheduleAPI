@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Info">
+
+	<!-- trainStInfoVo parameterMap -->
+	<parameterMap type="trainStInfoVo" id="trainStInfoVo">
+		<parameter property="trainStId" javaType="string" jdbcType="VARCHAR"  />
+		<parameter property="trainStName" javaType="string" jdbcType="VARCHAR" />
+		<parameter property="cityCode" javaType="string" jdbcType="VARCHAR" />
+	</parameterMap> 
+	
+	<!-- trainStInfoVo resultMap  -->
+	<resultMap type="trainStInfoVo" id="trainStInfoVoList">
+		<result property="trainStId" javaType="string" column="trainStId" jdbcType="VARCHAR"/>
+		<result property="trainStName" javaType="string" column="trainStName" jdbcType="VARCHAR"/>
+		<result property="cityCode" javaType="string" column="cityCode" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- cityInfoVo parameterMap -->
+	<parameterMap type="cityInfoVo" id="cityInfoVo">
+		<parameter property="cityCode" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="cityName" javaType="string" jdbcType="VARCHAR"/>
+	</parameterMap>
+	
+	<!-- cityInfoVo resultMap -->
+	<resultMap type="cityInfoVo" id="cityInfoVoList">
+		<result property="cityCode" javaType="string" column="cityCode" jdbcType="VARCHAR"/>
+		<result property="cityName" javaType="string" column="cityName" jdbcType="VARCHAR"/>	
+	</resultMap>
+	
+	<!-- ExpBusTmlInfoVo parameterMap -->
+	<parameterMap type="expBusTmlInfoVo" id="expBusTmlInfoVo">
+		<parameter property="tmId" javaType="string" jdbcType="VARCHAR"/>
+		<parameter property="tmName" javaType="string" jdbcType="VARCHAR"/>
+	</parameterMap>
+	
+	<!-- ExpBusTmlInfoVo resultMap -->
+	<resultMap type="expBusTmlInfoVo" id="expBusTmlInfoList">
+		<result property="tmId" javaType="string" column="TmId" jdbcType="VARCHAR"/>
+		<result property="tmName" javaType="string" column="TmName" jdbcType="VARCHAR"/>	
+	</resultMap>
+	
+
+
+	<!--  api에서 도시코드, 도시이름 입력 -->
+	<insert id="insertCityInfo" parameterType="cityInfoVo" >
+		INSERT IGNORE INTO CityInfo(cityCode, cityName)
+		VALUES (#{cityCode}, #{cityName})
+	</insert>
+	
+	
+	<!--  api에서 역 ID, 역 이름, 도시코드 입력 -->
+	<insert id="insertTrainStInfo" parameterType="trainStInfoVo">
+		
+		INSERT IGNORE INTO TrainStInfo(TrainStId, TrainStName, cityCode)
+		VALUES(#{trainStId}, #{trainStName}, #{cityCode})
+
+	</insert>
+	
+	<!--  도시 이름과 도시 코드를 조회 -->
+	<select id="selectCityInfoList" resultMap="cityInfoVoList" >
+		
+		SELECT cityCode, cityName
+		FROM CityInfo
+		WHERE LENGTH(cityCode) = 2
+		ORDER BY cityCode ASC
+	
+	</select>
+	
+	<!--  도시별 역이름과 역ID 조회 -->	
+	<select id="selectTrainStinfo" parameterType="String" resultMap="trainStInfoVoList">
+		SELECT trainStId, trainStName, cityCode
+		FROM TrainStInfo
+		WHERE cityCode = ${value}
+		ORDER BY trainStId ASC
+	</select>
+	
+	
+	<!--  api에서 전국 고속버스 터미널 id와 이름 입력 -->
+	<insert id="insertExpBusTml" parameterType="expBusTmlInfoVo">
+	
+		INSERT IGNORE INTO ExpBusTmlInfo(TmId, TmName)
+		VALUES(#{tmId}, #{tmName})
+	
+	</insert>
+	
+	<!-- 고속버스 터미널 아이디와 이름 조회 -->
+	<select id="selectTmlInfoList" resultMap="expBusTmlInfoList">
+	
+		SELECT TmId, TmName
+		FROM ExpBusTmlInfo
+		ORDER BY TmName ASC
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
