@@ -118,6 +118,7 @@ public class ReroadApiController {
 				
 	}//retriveexpbusschedule() end
 	
+	/*
 	@GetMapping("/home")
 	public String home() throws Exception {
 		
@@ -142,7 +143,7 @@ public class ReroadApiController {
 		
 		return "hello";
 	}
-	
+	*/
 	
 	
 	
