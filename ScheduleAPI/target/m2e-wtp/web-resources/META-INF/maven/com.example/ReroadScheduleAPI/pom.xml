@@ -107,8 +107,7 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
-		
-		
+
 	</dependencies>
 
 	<!-- <repositories> <repository> <id>jcenter-snapshots</id> <name>jcenter</name> 
