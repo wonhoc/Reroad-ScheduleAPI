@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Build-Jdk-Spec: 11
-Implementation-Title: ReroadScheduleAPI
+Implementation-Title: Reroad-ScheuleAPI
 Implementation-Version: 0.0.1-SNAPSHOT
 Created-By: Maven Integration for Eclipse
 

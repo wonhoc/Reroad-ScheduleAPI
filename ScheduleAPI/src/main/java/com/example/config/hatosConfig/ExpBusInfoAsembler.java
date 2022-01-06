@@ -17,9 +17,7 @@ public class ExpBusInfoAsembler implements RepresentationModelAssembler<ExpBusTm
 	@Override
 	public EntityModel<ExpBusTmlInfoVo> toModel(ExpBusTmlInfoVo expBusTmlInfo) {
 		
-		return EntityModel.of(expBusTmlInfo,
-				linkTo(methodOn(ReroadApiController.class).expbustmlinfo()).withRel("all-city-expbus-terminal-list"),
-				linkTo(methodOn(ReroadApiController.class).expbustmlinfo()).withSelfRel());
+		return EntityModel.of(expBusTmlInfo);
 	}//toModel() end
 	
 	@Override
@@ -27,8 +25,7 @@ public class ExpBusInfoAsembler implements RepresentationModelAssembler<ExpBusTm
 			Iterable<? extends ExpBusTmlInfoVo> expBusTmlInfo) {
 	
 		return RepresentationModelAssembler.super.toCollectionModel(expBusTmlInfo)
-				.add(linkTo(methodOn(ReroadApiController.class).citytrainstinfo()).withRel("all-city-expbus-terminal-list"),
-					linkTo(methodOn(ReroadApiController.class).citytrainstinfo()).withSelfRel());
+				.add(linkTo(methodOn(ReroadApiController.class).citytrainstinfo()).withSelfRel());
 	}//toCollectionModel() end
 	
 	

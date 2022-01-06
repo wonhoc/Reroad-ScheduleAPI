@@ -29,7 +29,7 @@ public class TrainInfoAssembler implements RepresentationModelAssembler<CityTrai
 			Iterable<? extends CityTrainStInfoVo> CityTrainStInfoList) {
 	
 		return RepresentationModelAssembler.super.toCollectionModel(CityTrainStInfoList)
-				.add(linkTo(methodOn(ReroadApiController.class).citytrainstinfo()).withRel("all-city-train-st-list"));
+				.add(linkTo(methodOn(ReroadApiController.class).citytrainstinfo()).withSelfRel());
 	}//toCollectionModel() end
 	
 	
