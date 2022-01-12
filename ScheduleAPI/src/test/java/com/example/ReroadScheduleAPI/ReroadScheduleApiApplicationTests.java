@@ -12,7 +12,7 @@ class ReroadScheduleApiApplicationTests {
 	
 	@Test 
 	void contextLoads(){
-		
+		/*
 		
 		String Ddate = "20201201050500"; 	
 		String Adate = "20201201055900";
@@ -37,7 +37,7 @@ class ReroadScheduleApiApplicationTests {
 		String spanTime = h + "시간" + m + "분";
 		
 		System.out.println(spanTime);
-
+		 */
 	}//test() end
 
 }//class end
