@@ -332,11 +332,19 @@ public class TrainServiceImpl implements TrainService {
 					        int arrplandtimeM = Integer.parseInt(arrplandtime.substring(10, 12));
 					        
 					        int h = (((arrplandtimeH  * 60) + arrplandtimeM) - ((depplandtimeH * 60) + depplandtimeM)) / 60;
-							int m = (((arrplandtimeH  * 60) + arrplandtimeH) - ((depplandtimeH * 60) + depplandtimeM)) % 60;
+							int m = (((arrplandtimeH  * 60) + arrplandtimeM) - ((depplandtimeH * 60) + depplandtimeM)) % 60;
 					        
-							String spanTime = h + "시간" + m + "분";
-					        
-					        
+							String spanTime = "";
+							
+							if(h>0) {
+								 spanTime = h + "시간" + m + "분";
+							}else {
+								 spanTime = m + "분";
+							}//if end
+							
+							
+							
+					        		        
 					        //정보들 List에 add
 					        cityInfos.add(new TrainScInfoVo(adultcharge, arrplandtime, depplandtime, traingradename, trainno, spanTime));
 
