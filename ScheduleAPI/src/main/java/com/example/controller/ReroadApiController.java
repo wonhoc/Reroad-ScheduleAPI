@@ -69,7 +69,7 @@ public class ReroadApiController {
 		TrainSetInfoVo settings = new TrainSetInfoVo(pageNo, depPlaceId, arrPlaceId, depPlandTime);
 		
 		TrainScVo trainSc = null;
-	
+		
 		trainSc = this.trainService.getTrainSc(settings);
 		
 		return EntityModel.of(trainSc,			

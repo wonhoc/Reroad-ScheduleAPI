@@ -320,8 +320,25 @@ public class TrainServiceImpl implements TrainService {
 					        String traingradename = Nodetraingradename.getFirstChild().getNodeValue();
 					        //api에서 가져온 열차번호
 					        String trainno = Nodetrainno.getFirstChild().getNodeValue();
+					        
+					        //소요시간계산 
+					        
+					        //출발시간
+					        int depplandtimeH = Integer.parseInt(depplandtime.substring(8, 10));
+					        int depplandtimeM = Integer.parseInt(depplandtime.substring(10, 12));
+					        
+					        //도착시간
+					        int arrplandtimeH = Integer.parseInt(arrplandtime.substring(8, 10));
+					        int arrplandtimeM = Integer.parseInt(arrplandtime.substring(10, 12));
+					        
+					        int h = (((arrplandtimeH  * 60) + arrplandtimeM) - ((depplandtimeH * 60) + depplandtimeM)) / 60;
+							int m = (((arrplandtimeH  * 60) + arrplandtimeH) - ((depplandtimeH * 60) + depplandtimeM)) % 60;
+					        
+							String spanTime = h + "시간" + m + "분";
+					        
+					        
 					        //정보들 List에 add
-					        cityInfos.add(new TrainScInfoVo(adultcharge, arrplandtime, depplandtime, traingradename, trainno));
+					        cityInfos.add(new TrainScInfoVo(adultcharge, arrplandtime, depplandtime, traingradename, trainno, spanTime));
 
 				        }//for end
 		        	    	
