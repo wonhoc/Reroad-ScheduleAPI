@@ -23,5 +23,6 @@ public class ExpBusScInfoVo {
 	private String charge;			//기본운임	
 	private String depPlandTime;	//출발시간	
 	private String gradeNm;			//버스등급명
+	private String spanTime;		//소요시간
 
 }//classs end

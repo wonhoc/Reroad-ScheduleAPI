@@ -13,5 +13,12 @@ public class ExpBusTmlInfoVo {
 
 	private String tmId;	//터미널 ID
 	private String tmName;  //터미널 이름
+	private String city;
+	
+	
+	public ExpBusTmlInfoVo(String tmId, String tmName) {
+		this.tmId = tmId;
+		this.tmName = tmName;
+	}
 	
 }//class end

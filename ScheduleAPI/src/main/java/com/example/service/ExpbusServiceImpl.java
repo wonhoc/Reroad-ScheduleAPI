@@ -194,7 +194,35 @@ public class ExpbusServiceImpl implements ExpbusService {
 	@Override
 	public ArrayList<ExpBusTmlInfoVo> allExpBusList() {
 		
-		return (ArrayList<ExpBusTmlInfoVo>)this.cityInfoDao.selectExpBusTmlInfo();
+		//리턴할객체
+		ArrayList<ExpBusTmlInfoVo> cityExpBusTmlInfoVo = new ArrayList<ExpBusTmlInfoVo>();
+		
+		ArrayList<ExpBusTmlInfoVo> allEBT =  (ArrayList)this.cityInfoDao.selectExpBusTmlInfo();
+		
+		//city정보 주입
+		for(ExpBusTmlInfoVo EBT : allEBT) {
+			
+			String subTmId = EBT.getTmId().substring(4, 5);	//터미널 ID의 숫자 첫글자로 구분
+
+			if(subTmId.equals("0")) { EBT.setCity("서울"); }
+			if(subTmId.equals("1")) { EBT.setCity("인천/경기"); }
+			if(subTmId.equals("2")) { EBT.setCity("강원"); }
+			if(subTmId.equals("3")) { EBT.setCity("대전/충남"); }
+			if(subTmId.equals("4")) { EBT.setCity("충북"); }
+			if(subTmId.equals("5")) { EBT.setCity("광주/전남"); }
+			if(subTmId.equals("6")) { EBT.setCity("전북"); }
+			if(subTmId.equals("7")) { EBT.setCity("부산/경남"); }
+			if(subTmId.equals("8")) { EBT.setCity("대구/경북"); }
+			
+			
+			cityExpBusTmlInfoVo.add(EBT);
+					
+		}//for end
+		
+		
+		
+		
+		return cityExpBusTmlInfoVo;
 		
 	}//allExpBusList() end
 	
@@ -276,9 +304,32 @@ public class ExpbusServiceImpl implements ExpbusService {
 				        String depPlandTime = NodedepPlandTime.getFirstChild().getNodeValue();
 				        //api에서 가져온 버스의 종류
 				        String gradeNm = NodegradeNm.getFirstChild().getNodeValue();
+				        
+				        
+				        //소요시간 계산
+				      //출발시간
+				        int depplandtimeH = Integer.parseInt(depPlandTime.substring(8, 10));
+				        int depplandtimeM = Integer.parseInt(depPlandTime.substring(10, 12));
+				        
+				        //도착시간
+				        int arrplandtimeH = Integer.parseInt(arrPlandTime.substring(8, 10));
+				        int arrplandtimeM = Integer.parseInt(arrPlandTime.substring(10, 12));
+				        
+				        int h = (((arrplandtimeH  * 60) + arrplandtimeM) - ((depplandtimeH * 60) + depplandtimeM)) / 60;
+						int m = (((arrplandtimeH  * 60) + arrplandtimeM) - ((depplandtimeH * 60) + depplandtimeM)) % 60;
+				        
+						String spanTime = "";
+						
+						if(h>0) {
+							 spanTime = h + "시간" + m + "분";
+						}else {
+							 spanTime = m + "분";
+						}//if end
+						
+				        
 
 				        //list에 add
-				        expBusScInfo.add(new ExpBusScInfoVo(arrPlandTime, charge, depPlandTime, gradeNm));
+				        expBusScInfo.add(new ExpBusScInfoVo(arrPlandTime, charge, depPlandTime, gradeNm, spanTime));
 				        
 				        
 				       

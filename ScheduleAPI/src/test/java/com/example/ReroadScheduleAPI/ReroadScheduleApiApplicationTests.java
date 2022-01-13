@@ -1,5 +1,6 @@
 package com.example.ReroadScheduleAPI;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,7 +11,7 @@ class ReroadScheduleApiApplicationTests {
 	
 	
 	
-	@Test 
+	@Test @Disabled
 	void contextLoads(){
 		/*
 		
@@ -39,5 +40,15 @@ class ReroadScheduleApiApplicationTests {
 		System.out.println(spanTime);
 		 */
 	}//test() end
+	
+	@Test @Disabled
+	void test (){
+		
+		String id = "NAEK010";
+		
+		String subId = id.substring(4, 5);
+		
+		System.out.println(subId);
+	}
 
 }//class end
