@@ -218,10 +218,7 @@ public class ExpbusServiceImpl implements ExpbusService {
 			cityExpBusTmlInfoVo.add(EBT);
 					
 		}//for end
-		
-		
-		
-		
+
 		return cityExpBusTmlInfoVo;
 		
 	}//allExpBusList() end

@@ -197,9 +197,6 @@ public class TrainServiceImpl implements TrainService {
 	//도시별 역정보를 return
 	@Override
 	public ArrayList<CityTrainStInfoVo> getCityTrainStInfo() {
-		
-		System.out.println("info begin");
-		
 		//리턴할 객체
 		ArrayList<CityTrainStInfoVo> cityTrainStInfoList = new ArrayList<CityTrainStInfoVo>();
 	
