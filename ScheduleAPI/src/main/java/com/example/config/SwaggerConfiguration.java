@@ -28,22 +28,29 @@ public class SwaggerConfiguration {
    private static final Contact contact = new Contact("tuna", "https://cat-fish.atlassian.net/wiki/spaces/RER/overview", "mw51321681@gmail.com");
     private static final Set<String> sets = new HashSet<>(Arrays.asList("application/json"));
     
+    
+    
+    
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+        		.apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.example"))
                 .paths(PathSelectors.any())
                 .build();
     }
+    
 
     private ApiInfo apiInfo() {
-        String description = "스케줄조회 REST API 목록입니다.";
+            
         return new ApiInfoBuilder()
                 .title(" Reroad REST API List")
-                .description(description)
                 .version("1.0")
+                .contact(contact)
                 .build();
+                
+       
     }
     
     
