@@ -27,41 +27,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {
    private static final Contact contact = new Contact("tuna", "https://cat-fish.atlassian.net/wiki/spaces/RER/overview", "mw51321681@gmail.com");
     private static final Set<String> sets = new HashSet<>(Arrays.asList("application/json"));
-
-
-    /*
-    @Bean
-    public LinkDiscoverers discoverers() {
-        List<LinkDiscoverer> plugins = new ArrayList<LinkDiscoverer>();
-        plugins.add(new CollectionJsonLinkDiscoverer());
-        return new LinkDiscoverers(SimplePluginRegistry.create(plugins));
-
-    }
-	
-     
-    
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("api")
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/api.*"))
-                .build()
-                .apiInfo(apiInfo())
-                .produces(sets)
-                .consumes(sets);
-
-    }
-
-   
-*/
     
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.any())
+                .apis(RequestHandlerSelectors.basePackage("com.example"))
                 .paths(PathSelectors.any())
                 .build();
     }
